@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.bind.support.WebExchangeBindException;
 
+/** This class takes care of possible exceptions that may occur. */
 @RestControllerAdvice
 public class ExceptionController {
 

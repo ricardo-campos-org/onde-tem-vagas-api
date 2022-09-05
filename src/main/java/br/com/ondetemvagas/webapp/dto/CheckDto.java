@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+/** This class contains a message and a release. */
 @Builder
 @Getter
 @AllArgsConstructor

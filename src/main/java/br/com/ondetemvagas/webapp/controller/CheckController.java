@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Mono;
 
+/** This class expose a check endpoint, like a service health. */
 @RestController
 public class CheckController {
 
