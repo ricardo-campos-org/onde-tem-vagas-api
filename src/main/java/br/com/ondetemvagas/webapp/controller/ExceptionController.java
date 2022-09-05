@@ -1,5 +1,6 @@
 package br.com.ondetemvagas.webapp.controller;
 
+import br.com.ondetemvagas.webapp.exception.UserAlreadyExistsException;
 import java.util.HashMap;
 import java.util.Map;
 import org.springframework.http.HttpStatus;
@@ -19,12 +20,16 @@ public class ExceptionController {
     return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorMap);
   }
 
-  /*
-  @ExceptionHandler(UserNotFoundException.class)
-  ResponseEntity<Map<String, String>> userNotFound(UserNotFoundException ex) {
-    return ResponseEntity.status(HttpStatus.NOT_FOUND).body(createMessageMap(ex.getMessage()));
+  @ExceptionHandler(UserAlreadyExistsException.class)
+  ResponseEntity<Map<String, String>> userAlreadyExists(UserAlreadyExistsException ex) {
+    return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(createMessageMap(ex.getMessage()));
   }
-   */
+
+  @ExceptionHandler(Exception.class)
+  ResponseEntity<Map<String, String>> userNotFound(Exception ex) {
+    return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+        .body(createMessageMap(ex.getMessage()));
+  }
 
   private Map<String, String> createMessageMap(String message) {
     final Map<String, String> errorMap = new HashMap<>();
