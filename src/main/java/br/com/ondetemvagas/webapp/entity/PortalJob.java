@@ -15,6 +15,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+/** This class represents a portal job entity. */
 @Builder
 @Getter
 @Setter
@@ -92,6 +93,12 @@ public class PortalJob {
         createdAt);
   }
 
+  /**
+   * Check if a portal job is valid. To be valid, it must have a job title
+   * and also a job url, both valid.
+   *
+   * @return true if it is, false otherwise
+   */
   public boolean isValid() {
     return !Objects.isNull(jobTitle)
         && !jobTitle.trim().isEmpty()
