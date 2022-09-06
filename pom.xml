@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>br.com.ondetemvagas</groupId>
 	<artifactId>webapp</artifactId>
-	<version>6</version>
+	<version>7</version>
 	<name>webapp</name>
 	<description>Tool to find jobs on the web</description>
 	<properties>
