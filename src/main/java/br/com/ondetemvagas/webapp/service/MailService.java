@@ -86,7 +86,7 @@ public class MailService {
                  <table>
                      <tr>
                          <td class="small" width="20%" style="vertical-align: top; padding-right:10px;">
-                             <img width="32" src="http://www.fastvagas.com.br/user/img/fast_logo2a.png" alt="Nova vaga detectada"/>
+                             <img width="32" src="https://i.imgur.com/0hmI6C1.png" alt="Nova vaga detectada"/>
                          </td>
                          <td>
                              <h4>__JOB_NAME__</h4>

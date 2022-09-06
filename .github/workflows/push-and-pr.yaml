@@ -120,7 +120,7 @@ jobs:
           path: target/coverage-reports/merged-test-report/
 
       - name: QualityGate
-        run: mvn --no-transfer-progress clean verify package -P test-everything sonar:sonar -Dsonar.projectKey=bcgov_nr-backend-starting-api -Dsonar.coverage.jacoco.xmlReportPaths=target/coverage-reports/merged-test-report/jacoco.xml --file pom.xml
+        run: mvn --no-transfer-progress clean verify package -P test-everything sonar:sonar -Dsonar.projectKey=ricardo-campos-org_onde-tem-vagas-api -Dsonar.coverage.jacoco.xmlReportPaths=target/coverage-reports/merged-test-report/jacoco.xml --file pom.xml
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}

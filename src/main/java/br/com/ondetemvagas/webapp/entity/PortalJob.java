@@ -7,10 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -28,27 +26,21 @@ public class PortalJob {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
-  @Size(max = 600)
   @Column(name = "job_title")
   private String jobTitle;
 
-  @Size(max = 600)
   @Column(name = "company_name")
   private String companyName;
 
-  @Size(max = 30)
   @Column(name = "job_type")
   private String jobType;
 
-  @Size(max = 600)
   @Column(name = "job_description")
   private String jobDescription;
 
-  @Size(max = 30)
   @Column(name = "published_at")
   private String publishedAt;
 
-  @Size(max = 1000)
   @Column(name = "job_url")
   private String jobUrl;
 
@@ -94,8 +86,8 @@ public class PortalJob {
   }
 
   /**
-   * Check if a portal job is valid. To be valid, it must have a job title
-   * and also a job url, both valid.
+   * Check if a portal job is valid. To be valid, it must have a job title and also a job url, both
+   * valid.
    *
    * @return true if it is, false otherwise
    */
