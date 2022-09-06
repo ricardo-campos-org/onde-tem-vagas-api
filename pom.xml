@@ -10,10 +10,12 @@
 	</parent>
 	<groupId>br.com.ondetemvagas</groupId>
 	<artifactId>webapp</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>6</version>
 	<name>webapp</name>
 	<description>Tool to find jobs on the web</description>
 	<properties>
+		<app.deploy.projectId>onde-tem-vagas</app.deploy.projectId>
+		<app.deploy.version>v${project.version}</app.deploy.version>
 		<checkstyle.skip>true</checkstyle.skip>
 		<jdk.version>17</jdk.version>
 		<jacoco.output.data>${project.build.directory}/coverage-reports</jacoco.output.data>
@@ -312,6 +314,12 @@
 						</goals>
 					</execution>
 				</executions>
+			</plugin>
+
+			<plugin>
+				<groupId>com.google.cloud.tools</groupId>
+				<artifactId>appengine-maven-plugin</artifactId>
+				<version>2.4.3</version>
 			</plugin>
 
 		</plugins>

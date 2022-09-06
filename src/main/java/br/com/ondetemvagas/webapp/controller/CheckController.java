@@ -30,6 +30,11 @@ public class CheckController {
     this.mailService = mailService;
   }
 
+  @GetMapping("/")
+  public String index() {
+    return "OK";
+  }
+
   @GetMapping(value = "/check", produces = MediaType.APPLICATION_JSON_VALUE)
   public CheckDto check() {
     return CheckDto.builder().message("OK").release(serviceVersion).build();
