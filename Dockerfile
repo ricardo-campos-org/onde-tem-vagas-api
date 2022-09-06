@@ -1,7 +1,6 @@
 FROM maven:3.8.6-openjdk-18-slim AS build
 COPY src /home/app/src
 COPY pom.xml /home/app
-COPY .env /home/app
 RUN mvn --no-transfer-progress -f /home/app/pom.xml clean package
 
 FROM amazoncorretto:17-alpine3.15
@@ -17,7 +16,6 @@ ENV JAVA_OPS -Xms256m -Xmx512m -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=
 ENV JAVA_DEBUG_OPS -verbose:gc -XX:+PrintGCDetails -XX:+PrintGCTimeStamps -Xloggc:$HEAP_LOG_PATH/garbage-collection.log
 ENV DEBUG_MODE false
 
-COPY --from=build /home/app/.env /usr/share/service/
 COPY --from=build /home/app/target/*.jar /usr/share/service/service.jar
 ADD ./dockerfile-entrypoint.sh /usr/share/service/dockerfile-entrypoint.sh
 RUN chmod +x /usr/share/service/dockerfile-entrypoint.sh
