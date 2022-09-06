@@ -4,6 +4,7 @@ import br.com.ondetemvagas.webapp.entity.PortalJob;
 import br.com.ondetemvagas.webapp.util.TextUtil;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
@@ -12,58 +13,21 @@ public class JoinvilleJoinvilleVagas implements Crawler {
 
   @Override
   public List<PortalJob> findJobs(Document document) {
-    List<PortalJob> portalJobList = new ArrayList<>();
-
-    Element olJobListings = document.selectFirst(".job_listings");
-    if (olJobListings == null) {
-      return portalJobList;
+    Elements liJobListing = findJobsElement(document);
+    if (Objects.isNull(liJobListing)) {
+      return new ArrayList<>();
     }
 
-    Elements liJobListing = olJobListings.select(".job_listing");
+    List<PortalJob> portalJobList = new ArrayList<>();
 
     for (Element li : liJobListing) {
       PortalJob portalJob = new PortalJob();
 
-      // Nome da vaga e URL
-      Element h3JobListingTitle = li.selectFirst(".job_listing-title");
-      if (h3JobListingTitle != null) {
-        Element a = h3JobListingTitle.selectFirst("a");
-        if (a != null) {
-          portalJob.setJobTitle(TextUtil.parseJobName(a.text()));
-          portalJob.setJobUrl(a.absUrl("href"));
-        }
-      }
-
-      // Nome da empresa
-      Element divJobListingCompany = li.selectFirst(".job_listing-company");
-      if (divJobListingCompany != null) {
-        portalJob.setCompanyName(divJobListingCompany.text().trim().toLowerCase());
-      }
-
-      // Tipo da vaga
-      Element divJType = li.selectFirst(".jtype");
-      if (divJType != null) {
-        portalJob.setJobType(TextUtil.capitalize(divJType.text().trim().toLowerCase()));
-      }
-
-      // Descrição
-      Elements divDescriptions = li.select(".ti");
-      if (divDescriptions.size() >= 2) {
-        Element divDescription = divDescriptions.get(1);
-        if (divDescription != null) {
-          portalJob.setJobDescription(
-              TextUtil.capitalize(divDescription.text().trim().toLowerCase()));
-        }
-      }
-
-      // Data da publicação
-      Element divDetails = li.selectFirst(".details");
-      if (divDetails != null) {
-        Element span = divDetails.selectFirst("span");
-        if (span != null) {
-          portalJob.setPublishedAt(span.text().trim());
-        }
-      }
+      findTitleAndUrl(portalJob, li);
+      findCompany(portalJob, li);
+      findType(portalJob, li);
+      findDescription(portalJob, li);
+      findPublicationDate(portalJob, li);
 
       if (portalJob.isValid()) {
         portalJobList.add(portalJob);
@@ -71,5 +35,60 @@ public class JoinvilleJoinvilleVagas implements Crawler {
     }
 
     return portalJobList;
+  }
+
+  private Elements findJobsElement(Document document) {
+    Element olJobListings = document.selectFirst(".job_listings");
+    if (Objects.isNull(olJobListings)) {
+      return null;
+    }
+
+    return olJobListings.select(".job_listing");
+  }
+
+  private void findTitleAndUrl(PortalJob portalJob, Element root) {
+    Element h3JobListingTitle = root.selectFirst(".job_listing-title");
+    if (!Objects.isNull(h3JobListingTitle)) {
+      Element a = h3JobListingTitle.selectFirst("a");
+      if (!Objects.isNull(a)) {
+        portalJob.setJobTitle(TextUtil.parseJobName(a.text()));
+        portalJob.setJobUrl(a.absUrl("href"));
+      }
+    }
+  }
+
+  private void findCompany(PortalJob portalJob, Element root) {
+    Element divJobListingCompany = root.selectFirst(".job_listing-company");
+    if (!Objects.isNull(divJobListingCompany)) {
+      portalJob.setCompanyName(divJobListingCompany.text().trim().toLowerCase());
+    }
+  }
+
+  private void findType(PortalJob portalJob, Element root) {
+    Element divJType = root.selectFirst(".jtype");
+    if (!Objects.isNull(divJType)) {
+      portalJob.setJobType(TextUtil.capitalize(divJType.text().trim().toLowerCase()));
+    }
+  }
+
+  private void findDescription(PortalJob portalJob, Element root) {
+    Elements divDescriptions = root.select(".ti");
+    if (divDescriptions.size() >= 2) {
+      Element divDescription = divDescriptions.get(1);
+      if (!Objects.isNull(divDescription)) {
+        portalJob.setJobDescription(
+            TextUtil.capitalize(divDescription.text().trim().toLowerCase()));
+      }
+    }
+  }
+
+  private void findPublicationDate(PortalJob portalJob, Element root) {
+    Element divDetails = root.selectFirst(".details");
+    if (!Objects.isNull(divDetails)) {
+      Element span = divDetails.selectFirst("span");
+      if (!Objects.isNull(span)) {
+        portalJob.setPublishedAt(span.text().trim());
+      }
+    }
   }
 }

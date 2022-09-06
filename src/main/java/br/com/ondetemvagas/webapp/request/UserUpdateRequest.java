@@ -3,8 +3,6 @@ package br.com.ondetemvagas.webapp.request;
 import java.util.Objects;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Min;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import lombok.AllArgsConstructor;
@@ -51,10 +49,16 @@ public class UserUpdateRequest {
 
   @Override
   public String toString() {
-    return "UserUpdateRequest{" +
-        "firstName='" + firstName + '\'' +
-        ", lastName='" + lastName + '\'' +
-        ", email='" + email + '\'' +
-        '}';
+    return "UserUpdateRequest{"
+        + "firstName='"
+        + firstName
+        + '\''
+        + ", lastName='"
+        + lastName
+        + '\''
+        + ", email='"
+        + email
+        + '\''
+        + '}';
   }
 }

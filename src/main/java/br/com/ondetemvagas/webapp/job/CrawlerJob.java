@@ -17,8 +17,6 @@ import org.springframework.stereotype.Component;
 @NoArgsConstructor
 public class CrawlerJob {
 
-  private static final SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
-
   private CrawlerService crawlerService;
 
   /**
@@ -36,6 +34,7 @@ public class CrawlerJob {
    */
   @Scheduled(cron = "0 0 */2 * * *")
   public void reportCurrentTime() {
+    final SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
     log.info("Starting jobs crawler at {}", dateFormat.format(new Date()));
 
     crawlerService.start();

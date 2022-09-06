@@ -3,7 +3,7 @@ package br.com.ondetemvagas.webapp.dto;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-public class CheckDtoTest {
+class CheckDtoTest {
 
   @Test
   void getStringPropsTest() {

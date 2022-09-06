@@ -10,5 +10,5 @@ public interface PortalRepository extends JpaRepository<Portal, Long> {
 
   List<Portal> findAllByEnabled(Boolean enabled);
 
-  List<Portal> findAllByCityId(Long city_id);
+  List<Portal> findAllByCityId(Long cityId);
 }

@@ -10,6 +10,8 @@ import org.springframework.util.StringUtils;
 /** This class holds utilities for text handling. */
 public class TextUtil {
 
+  private TextUtil() {}
+
   private static final String IGNORE_LIST = "de, e, em";
 
   private static final Map<String, String> replacer =

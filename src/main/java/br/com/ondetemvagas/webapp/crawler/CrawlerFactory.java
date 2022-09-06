@@ -2,6 +2,8 @@ package br.com.ondetemvagas.webapp.crawler;
 
 public class CrawlerFactory {
 
+  private CrawlerFactory() {}
+
   public static Crawler createInstance(String className) {
     // Joinville
     if (className.equals("JoinvilleBNE")) {

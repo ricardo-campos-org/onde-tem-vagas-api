@@ -24,9 +24,9 @@ public interface PortalJobRepository extends JpaRepository<PortalJob, Long> {
       "join portal p on (p.id = pj.portal_id) " +
       "WHERE city_id = ? ORDER BY published_at desc, "
       + "job_title asc", nativeQuery = true)
-  List<PortalJob> findAllLastByCityIdPage(Long CityId);
+  List<PortalJob> findAllLastByCityIdPage(Long cityId);
 
   @Query(value = "SELECT * FROM portal_job WHERE created_at >= ? "
       + "ORDER BY created_at, id", nativeQuery = true)
-  List<PortalJob> findAllByCreatedAtStartingAt(LocalDateTime starting_at);
+  List<PortalJob> findAllByCreatedAtStartingAt(LocalDateTime startingAt);
 }
