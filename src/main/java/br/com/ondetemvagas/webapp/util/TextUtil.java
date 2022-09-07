@@ -77,7 +77,7 @@ public class TextUtil {
       return text;
     }
 
-    return StringUtils.capitalize(text);
+    return StringUtils.capitalize(text.toLowerCase());
   }
 
   /**

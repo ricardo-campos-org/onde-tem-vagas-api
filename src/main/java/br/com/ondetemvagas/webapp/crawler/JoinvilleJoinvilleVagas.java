@@ -60,7 +60,8 @@ public class JoinvilleJoinvilleVagas implements Crawler {
   private void findCompany(PortalJob portalJob, Element root) {
     Element divJobListingCompany = root.selectFirst(".job_listing-company");
     if (!Objects.isNull(divJobListingCompany)) {
-      portalJob.setCompanyName(divJobListingCompany.text().trim().toLowerCase());
+      portalJob.setCompanyName(
+          TextUtil.parseJobName(divJobListingCompany.text().trim().toLowerCase()));
     }
   }
 

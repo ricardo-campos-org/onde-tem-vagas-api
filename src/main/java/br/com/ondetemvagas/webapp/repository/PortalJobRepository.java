@@ -10,6 +10,8 @@ public interface PortalJobRepository extends JpaRepository<PortalJob, Long> {
 
   List<PortalJob> findAllByPortalId(Long portalId);
 
+  List<PortalJob> findAllByProcessed(Boolean processed);
+
   @Query(value = "select * from portal_job where created_at >= ?",
       nativeQuery = true)
   List<PortalJob> findAllByCreatedStartingAt(LocalDateTime startingAt);
