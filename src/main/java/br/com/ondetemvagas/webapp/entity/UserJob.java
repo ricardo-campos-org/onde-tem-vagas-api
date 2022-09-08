@@ -8,41 +8,28 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.With;
 
-@With
-@Builder
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "user")
-public class User {
+@Table(name = "user_job")
+public class UserJob {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private Long id;
+  private Integer id;
 
-  @Column(name = "first_name")
-  private String firstName;
+  @Column(name = "user_id")
+  private Long userId;
 
-  @Column(name = "last_name")
-  private String lastName;
+  @Column(name = "portal_job_id")
+  private Long portalJobId;
 
-  @Column private String email;
-
-  @Column(name = "city_id")
-  private Long cityId;
-
-  @Column private Boolean enabled;
-
-  @Column(name = "updated_at")
-  private LocalDateTime updatedAt;
-
-  @Column private String terms;
+  @Column(name = "saved_at")
+  private LocalDateTime savedAt;
 }

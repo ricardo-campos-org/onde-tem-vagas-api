@@ -50,6 +50,8 @@ public class PortalJob {
   @Column(name = "created_at")
   private LocalDateTime createdAt;
 
+  private Boolean processed;
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -71,7 +73,8 @@ public class PortalJob {
   public String toString() {
     String template =
         "PortalJob{id=%d, jobTitle='%s', companyName='%s', jobType='%s', "
-            + "jobDescription='%s', publishedAt='%s', jobUrl='%s', portalId=%d, createdAt='%s'}";
+            + "jobDescription='%s', publishedAt='%s', jobUrl='%s', portalId=%d, createdAt='%s', "
+            + "processed='%s'}";
     return String.format(
         template,
         id,
@@ -82,7 +85,8 @@ public class PortalJob {
         publishedAt,
         jobUrl,
         portalId,
-        createdAt);
+        createdAt,
+        processed);
   }
 
   /**

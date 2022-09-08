@@ -117,6 +117,7 @@ public class CrawlerService {
         // Save the job, if it's not already saved
         if (!portalJobMap.containsKey(portalJob.getJobUrl())) {
           portalJob.setPortalId(portal.getId());
+          portalJob.setCreatedAt(LocalDateTime.now());
           portalJobToSave.add(portalJob);
         }
       }
@@ -158,16 +159,6 @@ public class CrawlerService {
     }
 
     return new ArrayList<>();
-  }
-
-  private Boolean check(String jobName, List<String> terms) {
-    for (String term : terms) {
-      if (jobName.toLowerCase().contains(term.toLowerCase())) {
-        return Boolean.TRUE;
-      }
-    }
-
-    return Boolean.FALSE;
   }
 
   private List<CrawlerLog> fromStringArray(String[] logs, Long portal_id) {
